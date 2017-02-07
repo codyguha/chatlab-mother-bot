@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+<% include ./partials/head %>
+
+<body>
+
+        <form id="statementList" method="post" action="/statement">
+            <input id="facebook_id" type="hidden" name='fb_id'>
+            <div id="submit" class="fixed-action-btn">
+              <a class="btn-floating btn-large blue z-depth-2">
+                <i class="material-icons">done</i>
+               </a>
+           </div>
+        </form>
+    </div>
+
+
+<script>
+window.extAsyncInit = function() {
+  var check = MessengerExtensions.isInExtension();
+  console.log(check)
+  if (check === false) {
+    $("#facebook_id").val(<%= id %>)
+  } else {
+    MessengerExtensions.getUserID(function success(uids) {
+         var psid = uids.psid.toString();
+         $("#facebook_id").val(psid)
+       }, function error(err) {
+
+       });
+  }
+
+};
+
+$('#submit').click(function (evt) {
+    $('form').submit();
+
+    evt.preventDefault();
+    MessengerExtensions.requestCloseBrowser(function success() {
+
+      }, function error(err) {
+
+      });
+      setTimeout(function() {
+            window.close();
+      }, 1000);
+});
+</script>
+
+<script src="/js/materialize.js"></script>
+</body>
