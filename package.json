@@ -20,6 +20,7 @@
     "body-parser": "^1.15.2",
     "botkit": "^0.4.3",
     "botkit-storage-mongo": "^1.0.4",
+    "botkit-storage-postgres": "^0.1.0",
     "connect-ensure-login": "^0.1.1",
     "cookie-parser": "^1.4.3",
     "drag-drop-webkit-mobile": "^1.2.0",
